@@ -34,10 +34,9 @@ If you make use of our work, please cite our repo:
 
 
 ## 📢 Latest Updates
-- [2024/08] 🔥 First release of our LLaVA-MORE 8B model.
-- [2024/08] 🔎 If you are interested in this area of research, check out [our survey](https://arxiv.org/abs/2402.12451),
-recently published in ACL (Findings).
-- [2024/08] 📚 Check out the latest researches from [AImageLab](https://aimagelab.ing.unimore.it/imagelab/).
+- [2024/08/01] 🔥 First release of our LLaVA-MORE 8B model, based on LLaMA 3.1.
+- [2024/08/01] 🔎 If you are interested in this area of research, check out [our survey](https://arxiv.org/abs/2402.12451) on the revolution of multimodal LLMs, recently published in ACL (Findings).
+- [2024/08/01] 📚 Check out the latest researches from [AImageLab](https://aimagelab.ing.unimore.it/imagelab/).
 
 ## Table of Contents
 
@@ -132,9 +131,10 @@ python -u llava/eval/run_llava.py
 If you get out-of-memory problems, consider loading the model weights in 8 bit (```load_in_8bit=True```).
 
 ## Acknowledgments
-We are thankful to the [LLaVA](https://github.com/haotian-liu/LLaVA.git) team for open-sourcing a modular codebase to extend and train different models within the LLaVA family.
-We are also happy users of the [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval.git) library , which has significantly reduced the evaluation time of our checkpoints across different datasets.
-Furthermore, we extend our gratitude to [CINECA](https://www.hpc.cineca.it/systems/hardware/leonardo/) for providing the HPC facilities used to train ```LLaVA-MORE```.
+We thank the [LLaVA](https://github.com/haotian-liu/LLaVA.git) team for open-sourcing a modular codebase to extend and train different models within the LLaVA family.
+We are also happy users of the [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval.git) library, which has significantly reduced the evaluation time of our checkpoints across different datasets.
+
+We also thank [CINECA](https://www.hpc.cineca.it/systems/hardware/leonardo/) for the availability of high-performance computing resources used to train ```LLaVA-MORE```. This work is supported by the PNRR-M4C2 project [FAIR - Future Artificial Intelligence Research](https://fondazione-fair.it/) and by the PNRR project [ITSERR - Italian Strengthening of Esfri RI Resilience](https://www.itserr.it/).
 
 
 In case you face any issues or have any questions, please feel free to create an issue.
