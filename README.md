@@ -54,7 +54,7 @@ If you make use of our work, please cite our repo:
 
 To further support the research community in enhancing Multimodal LLM performance, we are also releasing the training code and scripts for distributed training.
 
-Remember to star the repository to stay updated on future releases 🤗 and try our models [here](http://www.more.unimore.it/)!
+Remember to star the repository to stay updated on future releases 🤗!
 
 ## Performance
 In this section, we present the performance of our model compared to other versions of LLaVA across different multimodal datasets.
