@@ -25,7 +25,7 @@ If you make use of our work, please cite our repo:
 ```bibtex
 @misc{cocchi2024llavamore,
       title={{LLaVA-MORE: Enhancing Visual Instruction Tuning with LLaMA 3.1}},
-      author={Federico, Cocchi and Nicholas, Moratelli and Davide, Caffagni and Sara, Sarto and Marcella, Cornia and Lorenzo, Baraldi and Rita, Cucchiara},
+      author={Cocchi, Federico and Moratelli, Nicholas and Caffagni, Davide and Sarto, Sara and Cornia, Marcella and Baraldi, Lorenzo and Cucchiara, Rita},
       url={https://github.com/aimagelab/LLaVA-MORE},
       year={2024}
 }
@@ -35,7 +35,7 @@ If you make use of our work, please cite our repo:
 
 ## 📢 Latest Updates
 - [2024/08/01] 🔥 First release of our LLaVA-MORE 8B model, based on LLaMA 3.1.
-- [2024/08/01] 🔎 If you are interested in this area of research, check out [our survey](https://arxiv.org/abs/2402.12451) on the revolution of multimodal LLMs, recently published in ACL (Findings).
+- [2024/08/01] 🔎 If you are interested in this area of research, check out [our survey](https://arxiv.org/abs/2402.12451) on the revolution of Multimodal LLMs, recently published in ACL (Findings).
 - [2024/08/01] 📚 Check out the latest researches from [AImageLab](https://aimagelab.ing.unimore.it/imagelab/).
 
 ## Table of Contents
@@ -74,7 +74,7 @@ In this section, we present the performance of our model compared to other versi
 |  **LLaVA-MORE-8B**   |    **58.4**    |     **76.3**     |  **61.8**  |    **42.4**    |    64.1    |    69.8    |  **39.4**  |      **68.2**    |      **72.4**    |  85.1  |  **63.6** |  1531.5  |  **353.3**  |
 </div>
 
-*\* the results of TextVQA are calculated with OCR token in the input prompt.*
+*\* The results of TextVQA are computed with OCR token in the input prompt.*
 
 ## Checkpoints
 
