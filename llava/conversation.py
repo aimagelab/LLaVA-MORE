@@ -6,7 +6,6 @@ import base64
 from io import BytesIO
 from PIL import Image
 from transformers import AutoTokenizer
-import utils
 
 class SeparatorStyle(Enum):
     """Different separator style."""

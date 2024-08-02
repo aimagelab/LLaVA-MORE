@@ -36,8 +36,8 @@ from llava.model import *
 from llava.mm_utils import process_anyres_image, tokenizer_image_token
 
 from PIL import Image
-import utils
-logger = utils.get_logger(__name__)
+from llava.utils import get_logger
+logger= get_logger(__name__)
 
 local_rank = None
 

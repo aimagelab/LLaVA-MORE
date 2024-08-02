@@ -13,6 +13,18 @@ moderation_msg = "YOUR INPUT VIOLATES OUR CONTENT MODERATION GUIDELINES. PLEASE 
 
 handler = None
 
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+logging.basicConfig(
+    format="[%(levelname)s|%(filename)s:%(lineno)s] %(asctime)s >> %(message)s"
+)
+
+
+def get_logger(name):
+    logger = logging.getLogger(name)
+    logger.setLevel(logging.INFO)
+    return logger
+
 
 def build_logger(logger_name, logger_filename):
     global handler

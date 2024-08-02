@@ -30,8 +30,9 @@ import sys
 import os
 sys.path.append(os.path.abspath("."))
 sys.path.append(os.path.abspath("../.."))
-import utils
-logger= utils.get_logger(__name__)
+
+from llava.utils import get_logger
+logger= get_logger(__name__)
 
 class LlavaConfig(LlamaConfig):
     model_type = "llava_llama"
