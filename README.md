@@ -63,7 +63,7 @@ In this section, we present the performance of our model compared to other versi
 <img src="images/radar_plot.png" width="500"">
 </div>
 
-### Benchmarks and Comparisons on Instrucion Multimodal Datasets in the Literature
+### Benchmarks and Comparisons on Instruction Multimodal Datasets in the Literature
 
 <div align="center">
 
