@@ -120,7 +120,7 @@ We have also incorporated the ability to use different visual backbones, such as
 Considering that, you can view this repos as an effort to expand the study of Multimodal LLMs in multiple directions and as a 
 starting point for enhancing new features to improve the connection between images and language.
 
-You can find more references in this folder: ```scripts/more```
+You can find more references in this folder: ```scripts/more```.
 
 
 ## Inference
