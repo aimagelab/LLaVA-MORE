@@ -1,5 +1,6 @@
 <div align="center">
-  <img src="images/image_no_back.png" width="200" height="200">
+  <img src=  "images/image_no_back.png"
+   width="200" height="200">
   <h1>  🔥 LLaVA-MORE 🔥
     
  Enhancing Visual Instruction Tuning with LLaMA 3.1
@@ -34,7 +35,8 @@ If you make use of our work, please cite our repo:
 
 
 ## 📢 Latest Updates
-- [2024/08/01] 🔥 First release of our LLaVA-MORE 8B model, based on LLaMA 3.1.
+- [2024/08/16] 📌 Improved LLaVA-MORE 8B model, considering advanced image backbones.
+- [2024/08/01] 🔥 First release of our LLaVA-MORE 8B, based on LLaMA 3.1.
 - [2024/08/01] 🔎 If you are interested in this area of research, check out [our survey](https://arxiv.org/abs/2402.12451) on the revolution of Multimodal LLMs, recently published in ACL (Findings).
 - [2024/08/01] 📚 Check out the latest researches from [AImageLab](https://aimagelab.ing.unimore.it/imagelab/).
 
@@ -69,9 +71,13 @@ In this section, we present the performance of our model compared to other versi
 
 |       Model Name     |  Text-VQA*  |  Science-QA  |  AI2D  |  SEED-vid  |  SEED-all  |  SEED-img  |  MMMU  |  MMBench-Cn  |  MMBench-En  |  POPE  |  GQA  |   MME-P  |  MME-C  |
 |----------------------|:----------: |:------------:|:------:|:----------:|:----------:|:----------:|:------:|:------------:|:------------:|:------:|:-----:|:--------:|:-------:|
-|    LLaVA-v1.5-7B     |    58.2     |     69.0     |  56.4  |    42.0    |    61.6    |    66.8    |  34.2  |      56.5    |      65.3    |  **85.6**  |  62.4 |  1474.3  |  314.6  |
-| LLaVA-v1.5-LLaMA3-8B |    57.6     |     74.2     |  60.7  |    42.0    |    **64.3**    |    **70.1**    |  37.3  |      65.4    |      70.3    |  85.4  |  63.5 |  **1544.4**  |  330.3  |
-|  **LLaVA-MORE-8B**   |    **58.4**    |     **76.3**     |  **61.8**  |    **42.4**    |    64.1    |    69.8    |  **39.4**  |      **68.2**    |      **72.4**    |  85.1  |  **63.6** |  1531.5  |  **353.3**  |
+|    LLaVA-v1.5-7B              |    58.2      |     69.0     |  56.4     |    42.0    |    61.6    |    66.8     |  34.2     |      56.5     |      65.3     |  85.6     |  62.4     |  1474.3     |  314.6     |
+| LLaVA-v1.5-LLaMA3-8B          |    57.6      |     74.2     |  60.7     |    42.0    |    64.3    |    70.1     |  37.3     |      65.4     |      70.3     |  85.4     |  63.5     |  1544.4     |  330.3     |
+|  **LLaVA-MORE-8B**            |    58.4      |     76.3     |  61.8     |    42.4    |    64.1    |    69.8     |  39.4     |      **68.2** |      72.4     |  85.1     |  63.6     |  1531.5     |  **353.3** |
+|  **LLaVA-MORE-8B-S2**         |    60.9      |     76.7     |  62.2     |    42.3    |    64.2    |    69.9     |  38.7     |      65.8     |      71.1     |  **86.5** |  64.5     |  **1563.8** |  293.2     |
+|  **LLaVA-MORE-8B-siglip**     |    62.1      |     **77.5** |  **63.6** |  **46.1**  |   **65.8** |    **71.0** |  39.8     |      **68.2** |      **73.1** |  86.1     |  64.6     |  1531.0     |  315.4     |
+|  **LLaVA-MORE-8B-S2-siglip**  |    **63.5**  |     77.1     |  62.7     |    44.7    |    65.5    |    **71.0** |  **40.0** |      68.0     |      71.8     |  86.0     |  **64.9** |  1541.4     |  336.4     |
+
 </div>
 
 *\* The results of TextVQA are computed with OCR token in the input prompt.*
@@ -84,6 +90,12 @@ In the table below, you can find links to ours 🤗 Hugging Face models.
 |---------------------------|:-------------------------:|------------------------------------------------|
 | LLaVA_MORE-llama_3_1-8B-pretrain | [Hugging Face Model](https://huggingface.co/aimagelab/LLaVA_MORE-llama_3_1-8B-pretrain)  | Pretrained on [LCS-558K](https://huggingface.co/datasets/liuhaotian/LLaVA-Pretrain) and using [LLaMA 3.1 8B Instruct](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B-Instruct) as LLM backbone            |
 | LLaVA_MORE-llama_3_1-8B-finetuning | [Hugging Face Model](https://huggingface.co/aimagelab/LLaVA_MORE-llama_3_1-8B-finetuning)  | Finetuned on [LLaVA-Instruct-665K](https://huggingface.co/datasets/liuhaotian/LLaVA-Instruct-150K) and using [LLaMA 3.1 8B Instruct](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B-Instruct) as LLM backbone         |
+| LLaVA_MORE-llama_3_1-8B-S2-pretrain | [Hugging Face Model](https://huggingface.co/aimagelab/LLaVA_MORE-llama_3_1-8B-S2-pretrain)  | Pretrained on [LCS-558K](https://huggingface.co/datasets/liuhaotian/LLaVA-Pretrain) and using [LLaMA 3.1 8B Instruct](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B-Instruct) as LLM backbone            |
+| LLaVA_MORE-llama_3_1-8B-S2-finetuning | [Hugging Face Model](https://huggingface.co/aimagelab/LLaVA_MORE-llama_3_1-8B-S2-finetuning)  | Finetuned on [LLaVA-Instruct-665K](https://huggingface.co/datasets/liuhaotian/LLaVA-Instruct-150K) and using [LLaMA 3.1 8B Instruct](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B-Instruct) as LLM backbone         |
+| LLaVA_MORE-llama_3_1-8B-siglip-pretrain | [Hugging Face Model](https://huggingface.co/aimagelab/LLaVA_MORE-llama_3_1-8B-siglip-pretrain)  | Pretrained on [LCS-558K](https://huggingface.co/datasets/liuhaotian/LLaVA-Pretrain) and using [LLaMA 3.1 8B Instruct](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B-Instruct) as LLM backbone            |
+| LLaVA_MORE-llama_3_1-8B-siglip-finetuning | [Hugging Face Model](https://huggingface.co/aimagelab/LLaVA_MORE-llama_3_1-8B-siglip-finetuning)  | Finetuned on [LLaVA-Instruct-665K](https://huggingface.co/datasets/liuhaotian/LLaVA-Instruct-150K) and using [LLaMA 3.1 8B Instruct](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B-Instruct) as LLM backbone         |
+| LLaVA_MORE-llama_3_1-8B-S2-siglip-pretrain | [Hugging Face Model](https://huggingface.co/aimagelab/LLaVA_MORE-llama_3_1-8B-S2-siglip-pretrain)  | Pretrained on [LCS-558K](https://huggingface.co/datasets/liuhaotian/LLaVA-Pretrain) and using [LLaMA 3.1 8B Instruct](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B-Instruct) as LLM backbone            |
+| LLaVA_MORE-llama_3_1-8B-S2-siglip-finetuning | [Hugging Face Model](https://huggingface.co/aimagelab/LLaVA_MORE-llama_3_1-8B-S2-siglip-finetuning)  | Finetuned on [LLaVA-Instruct-665K](https://huggingface.co/datasets/liuhaotian/LLaVA-Instruct-150K) and using [LLaMA 3.1 8B Instruct](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B-Instruct) as LLM backbone         |
 
 
 ## Installation
@@ -115,9 +127,9 @@ sbatch scripts/more/12_finetuning_llama_31_acc_st_1.sh
 ### Visual Backbones
 
 As mentioned before, ```LLaVA-MORE``` introduces the use of LLaMA 3.1 within the LLaVA architecture for the first time. However, this repository goes beyond that single enhancement.
-We have also incorporated the ability to use different visual backbones, such as SigLIP, and various methods for managing image resolutions (S2). Additionally, we have experimented with different data mixtures to stress data quality during the LLaVA training stages.
+We have also incorporated the ability to use different visual backbones, such as SigLIP, and various methods for managing image resolutions (S2).
 
-Considering that, you can view this repos as an effort to expand the study of Multimodal LLMs in multiple directions and as a 
+Considering that, you can view this repo as an effort to expand the study of Multimodal LLMs in multiple directions and as a 
 starting point for enhancing new features to improve the connection between images and language.
 
 You can find more references in this folder: ```scripts/more```.
