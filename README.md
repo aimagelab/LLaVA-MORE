@@ -136,16 +136,17 @@ You can find more references in this folder: ```scripts/more```.
 
 
 ## Inference
-You can try our ```LLaVA-MORE``` in the Image-To-Text task using the following steps:
-- Get a Huggingface account, get approved for access to LLama 3.1, and create a read-only token to download the models,
-- export neccesary variables as follows:
+You can try our ```LLaVA-MORE``` with LLaMA 3.1 in the Image-To-Text task using the following script.
 ``` python
-export PYTHONPATH="${PYTHONPATH}:."
-export HF_TOKEN=<your_huggingface_token>
+source activate more
+cd local/path/LLaVA-MORE
+export PYTHONPATH=.
+
+# load the original llama 3.1 tokenizer using an active read-only hf_token
+export HF_TOKEN=hf_read_token
+# tokenizer_model_path
 export TOKENIZER_PATH=meta-llama/Meta-Llama-3.1-8B-Instruct
-```
-- run the following script:
-```
+
 python -u llava/eval/run_llava.py
 ```
 If you get out-of-memory problems, consider loading the model weights in 8 bit (```load_in_8bit=True```).
