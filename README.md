@@ -142,10 +142,9 @@ source activate more
 cd local/path/LLaVA-MORE
 export PYTHONPATH=.
 
-# load the original llama 3.1 tokenizer using an active read-only hf_token
-export HF_TOKEN=hf_read_token
 # tokenizer_model_path
-export TOKENIZER_PATH=meta-llama/Meta-Llama-3.1-8B-Instruct
+export HF_TOKEN=hf_read_token
+export TOKENIZER_PATH=aimagelab/LLaVA_MORE-llama_3_1-8B-finetuning 
 
 python -u llava/eval/run_llava.py
 ```
