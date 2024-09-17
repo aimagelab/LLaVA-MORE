@@ -23,7 +23,7 @@ export PYTHONPATH=.
 export WANDB_ENTITYproject_entity
 export WANDB_PROJECT=project_name
 export WANDB_MODE=offline
-export TOKENIZER_PATH=meta-llama/Meta-Llama-3.1-8B-Instruct
+export TOKENIZER_PATH=aimagelab/LLaVA_MORE-llama_3_1-8B-finetuning
 
 IFS=',' read -r -a nodelist <<<$SLURM_NODELIST
 export MASTER_ADDR=$(scontrol show hostnames "$SLURM_JOB_NODELIST" | head -n 1)
