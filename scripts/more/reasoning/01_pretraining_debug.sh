@@ -18,7 +18,7 @@ module load anaconda3/2022.05
 module load profile/deeplrn
 module load cuda/11.8
 
-source activate more
+source activate more_nick
 cd /leonardo/home/userexternal/fcocchi0/LLaVA-MORE
 
 export PYTHONPATH=.
@@ -58,7 +58,7 @@ echo "job name: $job_name"
 
 srun --exclusive -c $SLURM_CPUS_PER_TASK \
 torchrun \
---nnodes= --nproc-per-node=4 --rdzv-endpoint=$MASTER_ADDR --rdzv-id=$SLURM_JOB_NAME --rdzv-backend=c10d \
+--nnodes=2 --nproc-per-node=4 --rdzv-endpoint=$MASTER_ADDR --rdzv-id=$SLURM_JOB_NAME --rdzv-backend=c10d \
 llava/train/train_mem.py \
 --deepspeed ./scripts/zero2.json \
 --model_name_or_path $llama3_path \
@@ -74,7 +74,7 @@ llava/train/train_mem.py \
 --mm_use_im_start_end False \
 --mm_use_im_patch_token False \
 --bf16 True \
---output_dir /leonardo_scratch/large/userexternal/fcocchi0/rag_mlmm/checkpoints/${job_name} \
+--output_dir /leonardo_scratch/large/userexternal/fcocchi0/rag_mlmm/checkpoints/debug/${job_name} \
 --num_train_epochs $epochs \
 --per_device_train_batch_size 16 \
 --per_device_eval_batch_size 4 \
@@ -93,5 +93,5 @@ llava/train/train_mem.py \
 --gradient_checkpointing True \
 --dataloader_num_workers 8 \
 --lazy_preprocess True \
---report_to wandb \
---run_name $job_name \
+--report_to none \
+--run_name $job_name
