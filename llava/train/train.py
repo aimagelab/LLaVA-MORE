@@ -20,6 +20,7 @@ from dataclasses import dataclass, field
 import json
 import logging
 import pathlib
+from tqdm import tqdm
 from typing import Dict, Optional, Sequence, List
 
 import torch
@@ -605,6 +606,114 @@ def preprocess_llama_3_1(
         labels=targets,
     )
 
+def preprocess_llama_3_1_reasoning(
+        sources,
+    tokenizer: transformers.PreTrainedTokenizer,
+    has_image: bool = False
+) -> Dict:
+    conv = conversation_lib.default_conversation.copy()
+    roles = {"human": conv.roles[0], "gpt": conv.roles[1]}
+
+    # Apply prompt templates
+    conversations = []
+    for i, source in enumerate(sources):
+        if roles[source[0]["from"]] != conv.roles[0]:
+            # Skip the first one if it is not from human
+            source = source[1:]
+
+        conv.messages = []
+        for j, sentence in enumerate(source):
+            role = roles[sentence["from"]]
+            assert role == conv.roles[j % 2], f"{i}"
+            conv.append_message(role, sentence["value"])
+        conversations.append(conv.get_prompt())
+
+    # Tokenize conversations
+
+    if has_image:
+        input_ids = torch.stack([tokenizer_image_token(prompt, tokenizer, return_tensors='pt') for prompt in conversations], dim=0)
+    else:
+        input_ids = tokenizer(
+            conversations,
+            return_tensors="pt",
+            padding="longest",
+            max_length=tokenizer.model_max_length,
+            truncation=True,
+        ).input_ids
+
+    # remove the first bos token
+    if input_ids[0][0] == input_ids[0][1] == tokenizer.bos_token_id:
+        input_ids = input_ids[:, 1:]
+    targets = input_ids.clone()
+
+    assert conv.sep_style == conversation_lib.SeparatorStyle.LLAMA_3_1_REASONING
+
+    # Mask targets
+    sep = '<｜Assistant｜>'
+    # sep= '<|start_header_id|>' + conv.roles[1] + '<|end_header_id|>' + '\n\n'
+    #sep = conv.sep + conv.roles[1] + ": "
+    for conversation, target in zip(conversations, targets):
+        total_len = int(target.shape[0])
+
+        rounds = conversation.split(conv.tokenizer.eos_token)
+        rounds.pop(-1) # remove ''
+        # rounds= [rounds[0]] + [rounds[idx] + rounds[idx+1] for idx in range(1, len(rounds)-1, 2)]
+        try:
+            for el in rounds[0].split('<｜User｜>'):
+                rounds.append(el)
+            rounds.pop(0)
+            len_rounds = len(rounds)
+            for i, round in enumerate(rounds):
+                if i == len_rounds - 1:
+                    rounds[i] = '<｜User｜>' + round
+            rounds = rounds[-2:] + rounds[:-2]
+        except:
+            print(f"Skip the sample: {conversation}")
+
+        cur_len = 0
+        target[:cur_len] = IGNORE_INDEX
+        for i, rou in enumerate(rounds):
+            if rou == "":
+                break
+
+            parts = rou.split(sep)
+            if len(parts) != 2 and i != 0:
+                    break
+
+            if i == 0:
+                round_len = len(tokenizer(rou, add_special_tokens=False).input_ids)
+                instruction_len = len(tokenizer(rou, add_special_tokens=False).input_ids)
+
+            else:
+                parts[0] += sep
+                if has_image:
+                    round_len = len(tokenizer_image_token(rou, tokenizer))
+                    instruction_len = len(tokenizer_image_token(parts[0], tokenizer)) - 1
+                else:
+                    round_len = len(tokenizer(rou).input_ids)
+                    instruction_len = len(tokenizer(parts[0]).input_ids) - 1
+
+            # if i > 0: round_len += 1
+            target[cur_len : cur_len + instruction_len] = IGNORE_INDEX
+            cur_len += round_len
+
+        target[cur_len:] = IGNORE_INDEX
+        # cur_len= cur_len + len(tokenizer(sep, add_special_tokens=False).input_ids)
+
+        # if cur_len > tokenizer.model_max_length: print(f"WARNING: max length context")
+        if cur_len < tokenizer.model_max_length:
+            if cur_len != total_len:
+                target[:] = IGNORE_INDEX
+                print(
+                    f"WARNING: tokenization mismatch: {cur_len} vs. {total_len}."
+                    f" (ignored)"
+                )
+
+    return dict(
+        input_ids=input_ids,
+        labels=targets,
+    )
+
 
 def preprocess_v1(
     sources,
@@ -821,6 +930,8 @@ def preprocess(
         return preprocess_llama_3(sources, tokenizer, has_image=has_image)
     if conversation_lib.default_conversation.sep_style == conversation_lib.SeparatorStyle.LLAMA_3_1:
         return preprocess_llama_3_1(sources, tokenizer, has_image=has_image)
+    if conversation_lib.default_conversation.sep_style == conversation_lib.SeparatorStyle.LLAMA_3_1_REASONING:
+        return preprocess_llama_3_1_reasoning(sources, tokenizer, has_image=has_image)
     if conversation_lib.default_conversation.sep_style == conversation_lib.SeparatorStyle.LLAMA_2:
         return preprocess_llama_2(sources, tokenizer, has_image=has_image)
     if conversation_lib.default_conversation.version.startswith("v1"):
@@ -1233,6 +1344,10 @@ def train(attn_implementation=None):
                     tokenizer=tokenizer,
                     args=training_args,
                     **data_module)
+    
+    # iterate over dataset - data_module
+    # for batch in tqdm(data_module['train_dataset'], mininterval=1, maxinterval=len(data_module['train_dataset'])):
+    #     batch
 
     if list(pathlib.Path(training_args.output_dir).glob("checkpoint-*")):
         trainer.train(resume_from_checkpoint=True)

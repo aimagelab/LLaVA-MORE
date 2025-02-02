@@ -16,7 +16,7 @@ class SeparatorStyle(Enum):
     LLAMA_2 = auto()
     LLAMA_3 = auto()
     LLAMA_3_1 = auto()
-
+    LLAMA_3_1_REASONING = auto()
 
 @dataclasses.dataclass
 class Conversation:
@@ -114,6 +114,17 @@ class Conversation:
             return self.tokenizer.apply_chat_template(chat_template_messages, tokenize=False, add_generation_prompt=False)
         
         elif self.sep_style == SeparatorStyle.LLAMA_3_1:
+            chat_template_messages = [{"role": "system", "content": self.system}]
+            for role, message in messages:
+                if message:
+                    if type(message) is tuple:
+                        message, images = message
+                        message = "<image>" * len(images) + message
+                    chat_template_messages.append({"role": role, "content": message})
+
+            return self.tokenizer.apply_chat_template(chat_template_messages, tokenize=False, add_generation_prompt=False)
+        
+        elif self.sep_style == SeparatorStyle.LLAMA_3_1_REASONING:
             chat_template_messages = [{"role": "system", "content": self.system}]
             for role, message in messages:
                 if message:
@@ -435,6 +446,18 @@ conv_llava_llama_3_1 = Conversation(
     stop_token_ids=[128009, 128008, 128001],
 )
 
+conv_llava_llama_3_1_reasoning = Conversation(
+    system="You are a helpful language and vision assistant. " "You are able to understand the visual content that the user provides, and assist the user with a variety of tasks using natural language.",
+    #roles=("<|start_header_id|>user", "<|start_header_id|>assistant"),
+    roles=("user", "assistant"),
+    version="llama_3_1_reasoning",
+    messages=[],
+    offset=0,
+    sep_style=SeparatorStyle.LLAMA_3_1_REASONING,
+    tokenizer=llama_tokenizer,
+    stop_token_ids=[128009, 128008, 128001],
+)
+
 default_conversation = conv_vicuna_v1
 conv_templates = {
     "default": conv_vicuna_v0,
@@ -457,6 +480,7 @@ conv_templates = {
     "mpt": conv_mpt,
     "llama_3": conv_llava_llama_3,
     "llama_3_1": conv_llava_llama_3_1,
+    "llama_3_1_reasoning": conv_llava_llama_3_1_reasoning
 }
 
 

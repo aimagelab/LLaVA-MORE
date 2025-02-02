@@ -123,8 +123,11 @@ def load_pretrained_model(model_path, model_base, model_name, load_8bit=False, l
                     **kwargs
                 )
             else:
-                # some old checkpoints may not have the siglip parameter in configuration file                
-                tokenizer = AutoTokenizer.from_pretrained(model_path, use_fast=False)
+                # some old checkpoints may not have the siglip parameter in configuration file
+                if 'reasoning' in model_path:
+                    tokenizer = AutoTokenizer.from_pretrained(model_path)
+                else:
+                    tokenizer = AutoTokenizer.from_pretrained(model_path, use_fast=False)
                 model = LlavaLlamaForCausalLM.from_pretrained(
                     model_path,
                     low_cpu_mem_usage=True,

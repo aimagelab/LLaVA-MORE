@@ -44,13 +44,19 @@ class LlavaLlamaModel(LlavaMetaModel, LlamaModel):
     def __init__(self, config: LlamaConfig):
         super(LlavaLlamaModel, self).__init__(config)
 
+def _is_debug():
+    return int(os.environ.get('DEBUG', 0))
 
 class LlavaLlamaForCausalLM(LlamaForCausalLM, LlavaMetaForCausalLM):
     config_class = LlavaConfig
 
     def __init__(self, config):
         super(LlamaForCausalLM, self).__init__(config)
+        if _is_debug():
+            config.num_hidden_layers=1
+            print(f"NOTE: loading only {config.num_hidden_layers} model layers.")
         self.model = LlavaLlamaModel(config)
+        
         self.pretraining_tp = config.pretraining_tp
         self.vocab_size = config.vocab_size
         self.lm_head = nn.Linear(config.hidden_size, config.vocab_size, bias=False)
