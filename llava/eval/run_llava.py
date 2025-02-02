@@ -147,7 +147,8 @@ if __name__ == "__main__":
 
     # args.conv_mode= 'vicuna_v1'
     # args.conv_mode= 'llama_3'
-    args.conv_mode= 'llama_3_1'
+    # args.conv_mode= 'llama_3_1'
+    # args.conv_mode= 'llama_3_1_reasoning'
 
     print(f"conversation mode: {args.conv_mode}")
     print(f"model name: {args.model_path}")
