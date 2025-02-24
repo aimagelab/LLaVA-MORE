@@ -135,9 +135,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--model-path", type=str, default="aimagelab/LLaVA_MORE-llama_3_1-8B-finetuning")
     parser.add_argument("--model-base", type=str, default=None)
-    parser.add_argument("--image-file", type=str, default='https://farm2.staticflickr.com/1168/4723652147_ae14813f08_z.jpg')
+    parser.add_argument("--image-file", type=str, default="https://farm2.staticflickr.com/1168/4723652147_ae14813f08_z.jpg")
     parser.add_argument("--query", type=str, default="Describe this image.")
-    parser.add_argument("--conv-mode", type=str, default=None)
+    parser.add_argument("--conv-mode", type=str, default="llama_3_1")
     parser.add_argument("--sep", type=str, default=",")
     parser.add_argument("--temperature", type=float, default=0.2)
     parser.add_argument("--top_p", type=float, default=None)
@@ -147,7 +147,7 @@ if __name__ == "__main__":
 
     # args.conv_mode= 'vicuna_v1'
     # args.conv_mode= 'llama_3'
-    args.conv_mode= 'llama_3_1'
+    # args.conv_mode= 'llama_3_1'
 
     print(f"conversation mode: {args.conv_mode}")
     print(f"model name: {args.model_path}")
