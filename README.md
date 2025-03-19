@@ -3,7 +3,7 @@
    width="200" height="200">
   <h1>  🔥 LLaVA-MORE 🔥
     
- Enhancing Visual Instruction Tuning with LLaMA 3.1
+ A Comparative Study of LLMs and Visual Backbones <br>for Enhanced Visual Instruction Tuning
   </h1>  
 
 [![HuggingFace](https://img.shields.io/badge/🤗_LLaVA_MORE-1d8c0a)](https://huggingface.co/collections/aimagelab/llava-more-66aa6c49167e190bf27e7be4)
