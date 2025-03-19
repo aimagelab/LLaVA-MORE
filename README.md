@@ -24,10 +24,10 @@
 If you make use of our work, please cite our repo:
 
 ```bibtex
-@misc{cocchi2025llavamore,
+@inproceedings{cocchi2025llavamore,
       title={{LLaVA-MORE: A Comparative Study of LLMs and Visual Backbones for Enhanced Visual Instruction Tuning}},
       author={Cocchi, Federico and Moratelli, Nicholas and Caffagni, Davide and Sarto, Sara and Cornia, Marcella and Baraldi, Lorenzo and Cucchiara, Rita},
-      url={https://github.com/aimagelab/LLaVA-MORE},
+      booktitle={arxiv},
       year={2025}
 }
 ```
