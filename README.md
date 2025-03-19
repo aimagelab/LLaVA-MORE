@@ -7,7 +7,7 @@
   </h1>  
 
 [![HuggingFace](https://img.shields.io/badge/🤗_LLaVA_MORE-1d8c0a)](https://huggingface.co/collections/aimagelab/llava-more-66aa6c49167e190bf27e7be4)
-[![HuggingFace](https://img.shields.io/badge/🤗_AImageLab_-white)](https://huggingface.co/aimagelab)
+[![Paper](https://img.shields.io/badge/Paper-arxiv.2303.12112-B31B1B.svg)](https://arxiv.org/abs/???)
 [![Website](https://img.shields.io/badge/AImageLab-red)](https://aimagelab.ing.unimore.it/imagelab)
 
 </div>
