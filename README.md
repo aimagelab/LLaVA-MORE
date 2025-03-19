@@ -24,17 +24,19 @@
 If you make use of our work, please cite our repo:
 
 ```bibtex
-@misc{cocchi2024llavamore,
-      title={{LLaVA-MORE: Enhancing Visual Instruction Tuning with LLaMA 3.1}},
+@misc{cocchi2025llavamore,
+      title={{LLaVA-MORE: A Comparative Study of LLMs and Visual Backbones for Enhanced Visual Instruction Tuning}},
       author={Cocchi, Federico and Moratelli, Nicholas and Caffagni, Davide and Sarto, Sara and Cornia, Marcella and Baraldi, Lorenzo and Cucchiara, Rita},
       url={https://github.com/aimagelab/LLaVA-MORE},
-      year={2024}
+      year={2025}
 }
 ```
 
 
 
 ## 📢 Latest Updates
+- [2025/03/21] 🔜 Training and release of our LLaVA-MORE checkpoints with different LLMs and Visual Backbones
+- [2025/03/21] 📚 Check out [our latest paper]()
 - [2024/08/16] 📌 Improved LLaVA-MORE 8B model, considering advanced image backbones.
 - [2024/08/01] 🔥 First release of our LLaVA-MORE 8B, based on LLaMA 3.1.
 - [2024/08/01] 🔎 If you are interested in this area of research, check out [our survey](https://arxiv.org/abs/2402.12451) on the revolution of Multimodal LLMs, recently published in ACL (Findings).
@@ -52,7 +54,7 @@ If you make use of our work, please cite our repo:
 
 ## Overview
 
-```LLaVA-MORE``` enhances the well-known LLaVA architecture by integrating for the first time the use of LLaMA 3.1 as the language model. We are publicly releasing the checkpoints for stages one and two for the first model with 8B parameters.
+```LLaVA-MORE``` is a new family of MLLMs that integrates recent language models with diverse visual backbones. To ensure fair comparisons, we employ a unified training protocol applied consistently across all architectures.
 
 To further support the research community in enhancing Multimodal LLM performance, we are also releasing the training code and scripts for distributed training.
 
