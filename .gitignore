@@ -31,5 +31,7 @@ ckpts*
 # DevContainer
 !.devcontainer/*
 
-# Demo
 serve_images/
+scripts_private/*
+inference_example.py
+.vscode/*
