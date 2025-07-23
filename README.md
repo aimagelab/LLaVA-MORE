@@ -35,7 +35,8 @@ If you make use of our work, please cite our repo:
 
 
 ## 📢 Latest Updates
-- [2025/03/21] 🔜 Training and release of our LLaVA-MORE checkpoints with different LLMs and Visual Backbones
+- [2025/07/22] 📚 LLaVA-MORE has been accepted at "What is Next in Multimodal Foundation Models? " @ ICCV Workshop 2025
+- [2025/03/21] Training and release of our LLaVA-MORE checkpoints with different LLMs and Visual Backbones
 - [2025/03/21] 📚 Check out [our latest paper](https://arxiv.org/abs/2503.15621)
 - [2025/03/18] 🔥 LLaVA-MORE 8B is now availalbe on [Ollama](https://ollama.com/aimagelab/llava-more-8b)!
 - [2024/08/16] 📌 Improved LLaVA-MORE 8B model, considering advanced image backbones.
