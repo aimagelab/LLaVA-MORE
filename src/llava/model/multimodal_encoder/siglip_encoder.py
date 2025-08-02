@@ -50,7 +50,7 @@ class SigLIPVisionTower(nn.Module):
         return image_features
 
     @torch.no_grad()
-    def forward(self, images): # images tensor of shape (batch, 3, 336, 336)
+    def forward(self, images): # images tensor
         if type(images) is list:
             image_features = []
             for image in images:
@@ -69,30 +69,30 @@ class SigLIPVisionTower(nn.Module):
 
     @property
     def dtype(self):
-        return self.vision_tower.dtype # torch.float16  V
+        return self.vision_tower.dtype # torch.float16
 
     @property
     def device(self):
-        return self.vision_tower.device # device(type='cuda', index=0)  V
+        return self.vision_tower.device # device(type='cuda', index=0)
 
     @property
     def config(self):
         if self.is_loaded:
-            return self.vision_tower.config # CLIPVisionConfig - SiglipConfig   V
+            return self.vision_tower.config # CLIPVisionConfig - SiglipConfig
         else:
             return self.cfg_only
 
     @property
     def hidden_size(self):
-        return self.config.vision_config.hidden_size # 1152 V
+        return self.config.vision_config.hidden_size # 1152
 
     @property
     def num_patches_per_side(self):
-        return self.config.vision_config.image_size // self.config.vision_config.patch_size # (348 // 14) = 27  V
+        return self.config.vision_config.image_size // self.config.vision_config.patch_size # (348 // 14) = 27
 
     @property
     def num_patches(self):
-        return (self.config.vision_config.image_size // self.config.vision_config.patch_size) ** 2 # 729    V
+        return (self.config.vision_config.image_size // self.config.vision_config.patch_size) ** 2 # 729
 
 
 class CustomSiglipImageProcessor(SiglipImageProcessor):

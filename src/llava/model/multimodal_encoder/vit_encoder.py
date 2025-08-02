@@ -33,9 +33,9 @@ class ViTVisionTower(nn.Module):
         self.is_loaded = True
 
     def feature_select(self, image_forward_outs):
-        image_features = image_forward_outs.hidden_states[self.select_layer] # len 25, each is (batch, 577, 1024)
+        image_features = image_forward_outs.hidden_states[self.select_layer]
         if self.select_feature == 'patch':
-            image_features = image_features[:, 1:] # remove the CLS token --> (batch, 576, 1024)
+            image_features = image_features[:, 1:] # remove the CLS token
         elif self.select_feature == 'cls_patch':
             image_features = image_features
         else:
@@ -43,7 +43,7 @@ class ViTVisionTower(nn.Module):
         return image_features
 
     @torch.no_grad()
-    def forward(self, images): # images tensor of shape (batch, 3, 336, 336)
+    def forward(self, images): # images tensor
         if type(images) is list:
             image_features = []
             for image in images:
@@ -71,7 +71,7 @@ class ViTVisionTower(nn.Module):
     @property
     def config(self):
         if self.is_loaded:
-            return self.vision_tower.config # CLIPVisionConfig
+            return self.vision_tower.config 
         else:
             return self.cfg_only
 
@@ -81,9 +81,9 @@ class ViTVisionTower(nn.Module):
 
     @property
     def num_patches_per_side(self):
-        return self.config.image_size // self.config.patch_size # (518 // 14) = 37
+        return self.config.image_size // self.config.patch_size
 
     @property
     def num_patches(self):
-        return (self.config.image_size // self.config.patch_size) ** 2 # 1369
+        return (self.config.image_size // self.config.patch_size) ** 2
     

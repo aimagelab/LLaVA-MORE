@@ -42,7 +42,7 @@ class DINORegisterVisionTower(nn.Module):
         return image_features
 
     @torch.no_grad()
-    def forward(self, images): # images tensor of shape (batch, 3, 336, 336)
+    def forward(self, images): # images tensor
         if type(images) is list:
             image_features = []
             for image in images:
@@ -70,19 +70,19 @@ class DINORegisterVisionTower(nn.Module):
     @property
     def config(self):
         if self.is_loaded:
-            return self.vision_tower.config # CLIPVisionConfig
+            return self.vision_tower.config
         else:
             return self.cfg_only
 
     @property
     def hidden_size(self):
-        return self.config.hidden_size # 1024
+        return self.config.hidden_size
 
     @property
     def num_patches_per_side(self):
-        return self.config.image_size // self.config.patch_size # (336 // 14) = 24
+        return self.config.image_size // self.config.patch_size
 
     @property
     def num_patches(self):
-        return (self.config.image_size // self.config.patch_size) ** 2 # 576
+        return (self.config.image_size // self.config.patch_size) ** 2
     
