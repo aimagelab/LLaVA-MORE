@@ -155,7 +155,7 @@ def load_pretrained_model(model_path, model_base, model_name, load_8bit=False, l
                 print(f"Load the model: {model_path}")
                 if 'model_architecture' in kwargs:
                     model_architecture = kwargs.pop("model_architecture")
-                    if model_architecture == "gemma_2": # set the correct attention implementation for gemma_2 model
+                    if "gemma" in model_architecture: # set the correct attention implementation for gemma_2 model
                         kwargs["attn_implementation"] = "eager"
                 
                 try:             
